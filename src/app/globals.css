@@ -1,8 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
 }
 
 @theme inline {
@@ -21,6 +25,56 @@
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: #000000;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+html, body {
+  background: #ffffff !important;
+}
+
+/* Custom Pulse Animation for Same Day Icon */
+@layer utilities {
+  @keyframes pulse-icon {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+  }
+
+  .animate-pulse-icon {
+    animation: pulse-icon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* Only apply border to .btn, not all buttons */
+.btn, .button {
+  @apply border border-black bg-white text-black font-medium rounded-md transition-colors duration-200 px-4 py-2;
+}
+.btn:hover:not(:disabled),
+.btn:focus-visible:not(:disabled) {
+  background-color: #FFD54F;
+  color: #000;
+}
+.btn:active:not(:disabled) {
+  background-color: #FFD54F;
+  color: #000;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Remove border from all native buttons by default */
+button {
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  box-shadow: none;
 }
